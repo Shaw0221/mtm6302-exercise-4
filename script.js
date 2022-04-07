@@ -5,6 +5,7 @@ const $submitButton = document.getElementById('submitButton')
 const $clock = document.getElementById('clock')
 const $card = document.getElementById('card')
 const $title = document.getElementById('title')
+const $clearTimer = document.getElementById('clearTimer')
 
 if (localStorage.length != 0) {
     let retrievedTitle = localStorage.getItem('countdownTitle')
@@ -42,6 +43,10 @@ function dateDiff (start, end) {
 
         $card.classList.add('hidden')
 
-        
+        document.getElementById("clock").innerHTML += "<h1 class='display-6 mb-3 d-flex justify-content-center'>"+$countdownTitle.value+"</h1> <h1 class='display-5 mb-3'>"+$countdownDate.value+"</h1> <button class='btn btn-secondary clear' id='clearTimer'>Clear Countdown</button>";
+    }
+
+    if (e.target.classList.contains('clear')) {
+      
     }
   })
