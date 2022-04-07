@@ -9,25 +9,23 @@
     <title>Countdown Timer</title>
 </head>
 <body>
-    <div class="row justify-content-evenly mt-5">
-        <div class="col-md-3 mx-auto w-50">
-    <div class="card w-100 bg-light">
+    <div class="card bg-light">
         <div class="card-body">
           <h3 class="d-flex justify-content-center ">Create a Countdown</h5>
-          <form>
+          <form id="form">
             <div class="mb-3">
                 <label for="countdownTitle" class="form-label">Title</label>
                 <input type="text" class="form-control" id="countdownTitle">
             </div>
             <div class="mb-3">
                 <label for="countdownDate" class="form-label">Date and Time</label>
-            </div>
-            <button type="button" class="btn btn-primary" id="submitButton">Start Countdown</button>
+                <input type="datetime-local" class="form-control" id="countdownDate" aria-describedby="emailHelp">
+              </div>
+            <button type="button" class="btn btn-primary submit" id="submitButton">Start Countdown</button>
           </form>
-        </div>
-      </div>
      </div>
     </div>
+    <div id="clock" class="clock hidden"></div>
     
     <script src="script.js"></script>
 </body>
