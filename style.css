@@ -5,8 +5,15 @@ html, body {
     height: 100%
 }
 
+.clock {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100%
+}
+
 .hidden {
-    
+    visibility: hidden;
 }
 
 

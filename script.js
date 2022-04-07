@@ -4,6 +4,7 @@ const $countdownDate = document.getElementById('countdownDate')
 const $submitButton = document.getElementById('submitButton')
 const $clock = document.getElementById('clock')
 const $card = document.getElementById('card')
+const $title = document.getElementById('title')
 
 if (localStorage.length != 0) {
     let retrievedTitle = localStorage.getItem('countdownTitle')
@@ -39,5 +40,8 @@ function dateDiff (start, end) {
 
         saveData();
 
+        $card.classList.add('hidden')
+
+        
     }
   })
