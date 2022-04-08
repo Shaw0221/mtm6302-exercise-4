@@ -50,6 +50,7 @@ function dateDiff (start, end) {
         ,1000})
       }
       localStorage.setItem('localTitle', countdownTitle.value);
+      localStorage.setItem('localDate', $countdownDate.value)
   })
 
   $clock.addEventListener('click', function (e) {
@@ -69,13 +70,29 @@ function dateDiff (start, end) {
   }
 })
 
-let localCountdown = localStorage.getItem('localTitle')
-if (localCountdown) {
-  const countdownTitle = $countdownTitle.value
+const localCountdownTitle = localStorage.getItem('localTitle')
+if (localCountdownTitle) {
 
-  $title.value = countdownTitle
+  const countdownTitle = localCountdownTitle
+
+  $title.textContent = countdownTitle
 
   $card.classList.add('hidden')
 
   $clock.classList.remove('hidden')
+}
+
+const localCountdownDate = localStorage.getItem('localDate')
+if (localCountdownDate) {
+  timer = setInterval(function() {
+    const now = new Date();
+    const then = new Date(localCountdownDate);
+    const $dateDifference = dateDiff(now, then)
+
+    $countdownContainer.innerHTML = `<div class="countdownContain"><div class="display-4">${$dateDifference.days}:</div> <div class="display-4"> ${$dateDifference.hours}:</div> <div class="display-4"> ${$dateDifference.minutes}:</div> <div class="display-4">${$dateDifference.seconds}</div></div>`
+    ,1000})
+
+    $card.classList.add('hidden')
+
+    $clock.classList.remove('hidden')
 }
