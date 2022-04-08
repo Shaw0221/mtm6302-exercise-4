@@ -6,21 +6,11 @@ const $clock = document.getElementById('clock')
 const $card = document.getElementById('card')
 const $title = document.getElementById('title')
 const $clearTimer = document.getElementById('clearTimer')
+const $countdownContainer = document.getElementById('countdownContainer')
 
-if (localStorage.length != 0) {
-    let retrievedTitle = localStorage.getItem('countdownTitle')
-    let retrievedDate = localStorage.getItem('countdownDate')
-
-    $countdownTitle.value = retrievedTitle
-    $countdownDate.value = retrievedDate
-}
 
 function saveData() {
-    let countdownTitle = $countdownTitle.value
-    let countdownDate = $countdownDate.value
-
-    localStorage.setItem('countdownTitle', countdownTitle)
-    localStorage.setItem('countdownDate', countdownDate)
+    
   }
 
 function dateDiff (start, end) {
@@ -35,6 +25,8 @@ function dateDiff (start, end) {
     }
   }
 
+  let timer
+  
   $form.addEventListener('click', function (e) {
     if (e.target.classList.contains('submit')) {
         e.preventDefault();
@@ -43,10 +35,47 @@ function dateDiff (start, end) {
 
         $card.classList.add('hidden')
 
-        document.getElementById("clock").innerHTML += "<h1 class='display-6 mb-3 d-flex justify-content-center'>"+$countdownTitle.value+"</h1> <h1 class='display-5 mb-3'>"+$countdownDate.value+"</h1> <button class='btn btn-secondary clear' id='clearTimer'>Clear Countdown</button>";
-    }
+        $clock.classList.remove('hidden')
 
-    if (e.target.classList.contains('clear')) {
-      
-    }
+        const countdownTitle = $countdownTitle.value
+
+        $title.textContent = countdownTitle
+
+        timer = setInterval(function() {
+        const now = new Date();
+        const then = new Date($countdownDate.value);
+        const $dateDifference = dateDiff(now, then)
+
+        $countdownContainer.innerHTML = `<div class="countdownContain"><div class="display-4">${$dateDifference.days}:</div> <div class="display-4"> ${$dateDifference.hours}:</div> <div class="display-4"> ${$dateDifference.minutes}:</div> <div class="display-4">${$dateDifference.seconds}</div></div>`
+        ,1000})
+      }
+      localStorage.setItem('localTitle', countdownTitle.value);
   })
+
+  $clock.addEventListener('click', function (e) {
+  if (e.target.classList.contains('clear')) {
+    e.preventDefault();
+
+    localStorage.clear();
+
+    $card.classList.remove('hidden')
+
+    $clock.classList.add('hidden')
+
+    clearInterval(timer);
+
+    form.reset();
+
+  }
+})
+
+let localCountdown = localStorage.getItem('localTitle')
+if (localCountdown) {
+  const countdownTitle = $countdownTitle.value
+
+  $title.value = countdownTitle
+
+  $card.classList.add('hidden')
+
+  $clock.classList.remove('hidden')
+}

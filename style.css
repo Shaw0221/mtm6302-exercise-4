@@ -2,14 +2,16 @@ html, body {
     display: grid;
     justify-content: center;
     align-content: center;
-    height: 100%
 }
 
 .clock {
     display: grid;
     justify-content: center;
     align-content: center;
-    height: 100%
+}
+
+.countdownContain{
+    display: flex;
 }
 
 .hidden {
